@@ -41,4 +41,3 @@ end
 puts "Content-type: application/rss+xml"
 puts
 puts content, "\n"
-
