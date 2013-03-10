@@ -102,8 +102,8 @@ class RSS:
 #    author: cmallory /a t/ berserk /dot/ o r g
 #    """ 
     def __init__(self):
-        self.channel = Channel()
-        self.version = "2.0"
+        self.channel  = Channel()
+        self.version  = "2.0"
         self.contents = None
                 
 #    if __name__ == "__main__" :
@@ -158,31 +158,31 @@ class RSS:
         contents = ""
         if ( self.channel.initialized() ):
             contents += "<channel>\n"
-            contents += self.optionalWrite("title", self.channel.title );
-            contents += self.optionalWrite("link", self.channel.link );
-            contents += self.optionalWrite("description", self.channel.description );
+            contents += self.optionalWrite( "title",       self.channel.title       );
+            contents += self.optionalWrite( "link",        self.channel.link        );
+            contents += self.optionalWrite( "description", self.channel.description );
             
-            contents += self.optionalWrite("language", self.channel.language );
-            contents += self.optionalWrite("copyright", self.channel.copyright );
-            contents += self.optionalWrite("category", self.channel.category );
-            contents += self.optionalWrite("managingEditor", self.channel.managingEditor );
-            contents += self.optionalWrite("webMaster", self.channel.webMaster );
-            contents += self.optionalWrite("pubDate", self.channel.pubDate );
-            contents += self.optionalWrite("lastBuildDate", self.channel.lastBuildDate );
-            contents += self.optionalWrite("docs", self.channel.docs );
-            contents += self.optionalWrite("cloud", self.channel.cloud );
-            contents += self.optionalWrite("ttl", self.channel.ttl );
-            contents += self.optionalWrite("generator", self.channel.generator );     
-            contents += self.optionalWrite("image", self.channel.image );
-            contents += self.optionalWrite("rating", self.channel.rating );
-            contents += self.optionalWrite("textInput", self.channel.textInput );
-            contents += self.optionalWrite("skipHours", self.channel.skipHours );
-            contents += self.optionalWrite("skipDays", self.channel.skipDays );
+            contents += self.optionalWrite( "language",       self.channel.language       );
+            contents += self.optionalWrite( "copyright",      self.channel.copyright      );
+            contents += self.optionalWrite( "category",       self.channel.category       );
+            contents += self.optionalWrite( "managingEditor", self.channel.managingEditor );
+            contents += self.optionalWrite( "webMaster",      self.channel.webMaster      );
+            contents += self.optionalWrite( "pubDate",        self.channel.pubDate        );
+            contents += self.optionalWrite( "lastBuildDate",  self.channel.lastBuildDate  );
+            contents += self.optionalWrite( "docs",           self.channel.docs           );
+            contents += self.optionalWrite( "cloud",          self.channel.cloud          );
+            contents += self.optionalWrite( "ttl",            self.channel.ttl            );
+            contents += self.optionalWrite( "generator",      self.channel.generator      );
+            contents += self.optionalWrite( "image",          self.channel.image          );
+            contents += self.optionalWrite( "rating",         self.channel.rating         );
+            contents += self.optionalWrite( "textInput",      self.channel.textInput      );
+            contents += self.optionalWrite( "skipHours",      self.channel.skipHours      );
+            contents += self.optionalWrite( "skipDays",       self.channel.skipDays       );
  
             contents += "\n" + self.generateItems() + "</channel>\n"
         else :
-            contents = "[Channel not properly initialized.  "
-            contents +="A required field is not set.(title/link/description]"
+            contents =  "[Channel not properly initialized. "
+            contents += "A required field is not set.(title/link/description]"
         
         return contents
 
@@ -193,20 +193,20 @@ class RSS:
 
             c += "<item>"
 
-            c += self.optionalWrite("title", i.title);
-            c += self.optionalWrite("link", i.link );
-            c += self.optionalWrite("description", i.description);
-            c += self.optionalWrite("author", i.author );
-            c += self.optionalWrite("pubDate", str(i.pubDate) )
-            c += self.optionalWrite("category", i.category )
-            c += self.optionalWrite("comments", i.comments )
-            c += self.optionalWrite("guid", i.guid )
-            c += self.optionalWrite("source", i.source )
+            c += self.optionalWrite( "title",       i.title        );
+            c += self.optionalWrite( "link",        i.link         );
+            c += self.optionalWrite( "description", i.description  );
+            c += self.optionalWrite( "author",      i.author       );
+            c += self.optionalWrite( "pubDate",     str(i.pubDate) );
+            c += self.optionalWrite( "category",    i.category     );
+            c += self.optionalWrite( "comments",    i.comments     );
+            c += self.optionalWrite( "guid",        i.guid         );
+            c += self.optionalWrite( "source",      i.source       );
             
             if ( i.enclosure.url != "" ):
-                c+= "<enclosure url=\"" + i.enclosure.url + "\" "
-                c+= "length=\"" + str(i.enclosure.length )+ "\" "
-                c+= "type=\"" + i.enclosure.type + "\"/>\n"
+                c += "<enclosure url=\"" + i.enclosure.url          + "\" "
+                c += "length=\""         + str(i.enclosure.length ) + "\" "
+                c += "type=\""           + i.enclosure.type         + "\"/>\n"
                 
             for k in i.nsItems.keys():
                 c += self.optionalWrite( k , i.nsItems[ k ] )
@@ -235,7 +235,7 @@ class RSS:
 #Namespace
 class Namespace:
     def __init__( self, name, url ):
-        self.url = url
+        self.url  = url
         self.name = name
 
    
@@ -252,30 +252,31 @@ class Channel:
         #
         # Required Fields
         #
-        self.title= None
-        self.link= None
-        self.description= None
+        self.title       = None
+        self.link        = None
+        self.description = None
+
         #
         #  Optional Fields
         #
-        self.language = ""
-        self.copyright = ""
+        self.language       = ""
+        self.copyright      = ""
         self.managingEditor = ""
-        self.webMaster = ""
-        self.pubDate = ""
-        self.lastBuildDate = ""
-        self.category = ""
-        self.generator = ""
-        self.docs = ""
-        self.cloud = ""
-        self.ttl = ""
-        self.image = ""
-        self.rating = ""
-        self.textInput = ""
-        self.skipHours = ""
-        self.skipDays = ""
+        self.webMaster      = ""
+        self.pubDate        = ""
+        self.lastBuildDate  = ""
+        self.category       = ""
+        self.generator      = ""
+        self.docs           = ""
+        self.cloud          = ""
+        self.ttl            = ""
+        self.image          = ""
+        self.rating         = ""
+        self.textInput      = ""
+        self.skipHours      = ""
+        self.skipDays       = ""
         
-        self.items = []
+        self.items      = []
         self.namespaces = []
 
     def initialized( self ):
@@ -298,17 +299,17 @@ class Item:
 #    """
     def __init__( self ):
 
-        self.title = ""
-        self.link = ""
+        self.title       = ""
+        self.link        = ""
         self.description = ""
-        self.author = ""
-        self.category = ""
-        self.comments = ""
-        self.enclosure = ""
-        self.guid = ""
-        self.pubDate = ""
-        self.source = ""
-        self.enclosure = Enclosure()
+        self.author      = ""
+        self.category    = ""
+        self.comments    = ""
+        self.enclosure   = ""
+        self.guid        = ""
+        self.pubDate     = ""
+        self.source      = ""
+        self.enclosure   = Enclosure()
         
         self.nsItems = {}
         
@@ -334,7 +335,7 @@ class Enclosure:
 #    
 #    """
     def __init__(self):
-        self.url = ""
+        self.url    = ""
         self.length = 0
-        self.type = ""
+        self.type   = ""
         
